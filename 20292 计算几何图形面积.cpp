@@ -1,25 +1,46 @@
 #include<iostream>
 using namespace std;
-const double p=3.14159;
-double s1(double a,double b){return a*b;}
-double s2(double a){return p*a*a;}
+
+class ss{
+private:
+	int x;
+	double a,b;
+public:
+	void Set(int an){
+		x=2;
+		a=an;
+	}
+	void Set(int an,int bn){
+		x=1;
+		a=an;
+		b=bn;
+	}
+	double GetS(){
+		if(x==2)return a*a*3.14159;
+		else if(x==1)return a*b;
+	}
+};
+
 int main(){
-	int n,x;
-	double* c=new double[100];
+	int n;
+	int x;
 	double a,b;
 	cin>>n;
+	ss*ar=new ss[30];
 	for(int i=0;i<n;i++){
 		cin>>x;
-		if(x==1){
-			cin>>a>>b;
-			c[i]=s1(a,b);
-		}
-		else{
+		if(x==2){
 			cin>>a;
-			c[i]=s2(a);
+			ar[i].Set(a);
+		}
+		else if(x==1){
+			cin>>a>>b;
+			ar[i].Set(a,b);	
 		}
 	}
-	for(int j=0;j<n;j++)cout<<c[j]<<endl;
-	delete []c;
+	for(int i=0;i<n;i++){
+		cout<<ar[i].GetS()<<endl;
+	}
+	delete []ar;
 	return 0;
 }
